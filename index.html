@@ -11,9 +11,10 @@
 
     <h4>Current Word:</h4>
     <p id="currentWord"></p>
-    <p>Wins: <span id="wins"></span></p>
-    <p>Losses: <span id="losses"></span></p>
+    <p>Wins: <span id="wins">0</span></p>
+    <p>Losses: <span id="losses">0</span></p>
     <p>Letters: <span id="lettersGuessed"></span></p>
+    <p>chances: <span id="chances">9</span></p>
 
 <script>
     var wordList = [
@@ -48,10 +49,12 @@
 
             this.lettersGuessed.push(letter.toLowerCase());
             this.guessesLeft--;
+            document.getElementById('chances').innerText = this.guessesLeft;
 
             if (this.guessesLeft == 0) {
                 this.losses++;
                 document.getElementById('losses').innerText = this.losses;
+                game.newGame();
             }
 
             // final step is to display the letters used
