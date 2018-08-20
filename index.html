@@ -5,19 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Word Guess Game</title>
+
+    <!-- styles -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- scripts -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </head>
 <body>
-    <h5>Press any key to get started!</h5>    
+    <div id="board" class="container text-center">
+        <h5>Press any key to get started!</h5>    
 
-    <p>Category: Car Brands</p>
-    <h4>Current Word:</h4>
-    <p id="currentWord"></p>
-    <p id="congrats" style="display:none">Congratulations on guessing the word!</p>
-    <p>Wins: <span id="wins">0</span></p>
-    <p>Losses: <span id="losses">0</span></p>
-    <p>Letters: <span id="lettersGuessed"></span></p>
-    <p>chances: <span id="guessesLeft">9</span></p>
-
+        <p>Category: Car Brands</p>
+        <h4>Current Word:</h4>
+        <p id="currentWord"></p>
+        <p id="congrats" style="display:none">Congratulations on guessing the word!</p>
+        <p>Wins: <span id="wins">0</span></p>
+        <p>Losses: <span id="losses">0</span></p>
+        <p>Letters: <span id="lettersGuessed"></span></p>
+        <p>chances: <span id="guessesLeft">9</span></p>
+    </div>
 <script type="text/javascript" src="assets/javascript/game.js"></script>
 </body>
 </html>

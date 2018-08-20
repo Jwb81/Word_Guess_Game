@@ -4,12 +4,18 @@ var wordList = [
     'jeep', 'lotus', 'porsche', 'bmw', 'gmc', 'tesla'
 ];
 
+
 var game = {
     word : "",
     wins : 0,
     losses : 0,
     guessesLeft : 0,
     lettersGuessed : [],
+    winningSound : new Audio('assets/audio/ta_da.mp3'),
+
+    playSound : function() {
+        this.winningSound.play();
+    },
 
     newGame : function () {
         this.guessesLeft = 9;
@@ -22,15 +28,17 @@ var game = {
         }
         document.getElementById('currentWord').innerText = wordString;
         document.getElementById('guessesLeft').innerText = this.guessesLeft;
+        document.getElementById('lettersGuessed').innerText = this.lettersGuessed;
     },
 
     checkGuess : function (letter) {
         for (var i = 0; i < this.lettersGuessed.length; i++) {
-            if (this.lettersGuessed[i] === letter.toLowerCase())
+            if (this.lettersGuessed[i] === letter.toUpperCase())
                 return;
         }
 
-        this.lettersGuessed.push(letter.toLowerCase());
+        this.lettersGuessed.push(letter.toUpperCase());
+        document.getElementById('lettersGuessed').innerText = this.lettersGuessed;
         if (this.word.indexOf(letter) == -1 ) {
             this.guessesLeft--;
         }
@@ -58,9 +66,9 @@ var game = {
 
             for (var j = 0; j < this.lettersGuessed.length; j++) {
                 // console.log(this.word[i] + '  '  + this.lettersGuessed[j]);
-                if (this.word[i] == this.lettersGuessed[j]) {
+                if (this.word[i].toLowerCase() == this.lettersGuessed[j].toLowerCase()) {
                     // show this letter
-                    wordString += ' ' + this.word[i].toUpperCase();
+                    wordString += ' ' + this.word[i].toLowerCase();
                     correctCounter++;
                     letterFound = true;
                 }
@@ -77,6 +85,7 @@ var game = {
 
         if (correctCounter == this.word.length) { // the user won the game
             this.wins++;
+            game.playSound();
             document.getElementById('wins').innerText = this.wins;
             document.getElementById('congrats').style.display = 'block';
             setTimeout(function() {
