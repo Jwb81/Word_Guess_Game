@@ -7,110 +7,17 @@
     <title>Word Guess Game</title>
 </head>
 <body>
-    <h3>Press any key to get started!</h4>
+    <h5>Press any key to get started!</h5>    
 
+    <p>Category: Car Brands</p>
     <h4>Current Word:</h4>
     <p id="currentWord"></p>
+    <p id="congrats" style="display:none">Congratulations on guessing the word!</p>
     <p>Wins: <span id="wins">0</span></p>
     <p>Losses: <span id="losses">0</span></p>
     <p>Letters: <span id="lettersGuessed"></span></p>
-    <p>chances: <span id="chances">9</span></p>
+    <p>chances: <span id="guessesLeft">9</span></p>
 
-<script>
-    var wordList = [
-        'hello', 'goodbye'
-    ];
-
-    var game = {
-        word : "",
-        wins : 0,
-        losses : 0,
-        guessesLeft : 0,
-        lettersGuessed : [],
-
-        newGame : function () {
-            this.guessesLeft = 9;
-            this.lettersGuessed = [];
-            this.word = wordList[0];
-
-            var wordString = '';
-            for (var i = 0; i < this.word.length; i++) {
-                wordString += ' _';
-            }
-            document.getElementById('currentWord').innerText = wordString;
-
-        },
-
-        checkGuess : function (letter) {
-            for (var i = 0; i < this.lettersGuessed.length; i++) {
-                if (this.lettersGuessed[i] === letter.toLowerCase())
-                    return;
-            }
-
-            this.lettersGuessed.push(letter.toLowerCase());
-            this.guessesLeft--;
-            document.getElementById('chances').innerText = this.guessesLeft;
-
-            if (this.guessesLeft == 0) {
-                this.losses++;
-                document.getElementById('losses').innerText = this.losses;
-                game.newGame();
-            }
-
-            // final step is to display the letters used
-            this.displayLetters();
-        },
-
-        displayLetters : function () {
-            var wordString = "";
-            var correctCounter = 0;
-            var letterFound = false;
-            
-            for (var i = 0; i < this.word.length; i++) {
-                letterFound = false;
-
-                for (var j = 0; j < this.lettersGuessed.length; j++) {
-                    // console.log(this.word[i] + '  '  + this.lettersGuessed[j]);
-                    if (this.word[i] == this.lettersGuessed[j]) {
-                        // show this letter
-                        wordString += ' ' + this.word[i].toUpperCase();
-                        correctCounter++;
-                        letterFound = true;
-                    }
-                }
-                if (letterFound == false) {
-                        wordString += ' _';
-                }
-
-                // reset the boolean for the next iteration
-                letterFound = false;
-
-
-            }
-
-            if (correctCounter == this.word.length) { // the user won the game
-                this.wins++;
-                document.getElementById('wins').innerText = this.wins;
-                this.newGame();
-            }
-            else {
-                document.getElementById('currentWord').innerText = wordString;
-            }
-
-            // console.log(wordString);
-        }
-    }
-
-
-    document.onkeyup = function (evt) {
-        var keyPressed = evt.key;
-
-        game.checkGuess(keyPressed);
-    }
-
-    // start the game
-    game.newGame();
-
-</script>
+<script type="text/javascript" src="assets/javascript/game.js"></script>
 </body>
 </html>
