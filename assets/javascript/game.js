@@ -1,7 +1,8 @@
 var wordList = [
     'honda', 'acura', 'pontiac', 'ford', 'lincoln', 'mazda', 'audi', 'volkswagen', 'lamborghini', 'pagani',
     'kia', 'toyota', 'lexus', 'nissan', 'mercedes', 'chevy', 'hyundai', 'ferrari', 'bugatti', 'mclaren',
-    'jeep', 'lotus', 'porsche', 'bmw', 'gmc', 'tesla'
+    'jeep', 'lotus', 'porsche', 'bmw', 'gmc', 'tesla', 'citroen', 'renault', 'mercury', 'buick', 'mitsubishi',
+    'chrysler', 'jaguar', 'fiat' 
 ];
 
 
@@ -11,11 +12,8 @@ var game = {
     losses : 0,
     guessesLeft : 0,
     lettersGuessed : [],
-    winningSound : new Audio('assets/audio/ta_da.mp3'),
-
-    playSound : function() {
-        this.winningSound.play();
-    },
+    winningSound : new Audio('assets/audio/win.mp3'),
+    losingSound : new Audio('assets/audio/lose.mp3'),
 
     newGame : function () {
         this.guessesLeft = 9;
@@ -47,6 +45,7 @@ var game = {
 
         if (this.guessesLeft == 0) {
             this.losses++;
+            this.losingSound.play();
             document.getElementById('losses').innerText = this.losses;
             game.newGame();
         }
@@ -85,7 +84,7 @@ var game = {
 
         if (correctCounter == this.word.length) { // the user won the game
             this.wins++;
-            game.playSound();
+            this.winningSound.play();
             document.getElementById('wins').innerText = this.wins;
             document.getElementById('congrats').style.display = 'block';
             setTimeout(function() {
